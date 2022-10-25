@@ -1,6 +1,10 @@
-
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
 generator client {
   provider      = "prisma-client-js"
   output = "../node_modules/.prisma/client"
@@ -10,7 +14,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Account {
     id                       String   @id @default(cuid())
     createdAt                DateTime @default(now())
@@ -19,13 +22,13 @@ model Account {
     type                     String
     provider                 String
     providerAccountId        String
-    refresh_token            String?  @db.VarChar(500)
-    access_token             String?  @db.VarChar(500)
+    refresh_token            String? @db.VarChar(500)
+    access_token             String? @db.VarChar(500)
     refresh_token_expires_in Int?
     expires_at               Int?
     token_type               String?
     scope                    String?
-    id_token                 String?  @db.Text
+    id_token                 String? @db.Text
     session_state            String?
     oauth_token_secret       String?
     oauth_token              String?

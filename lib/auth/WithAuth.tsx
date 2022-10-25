@@ -15,6 +15,7 @@ function WithAuth({ children, options }) {
     // If not authenticated, redirect to provided url or
     if (!isUser) {
       if (options?.redirectTo) {
+        // router.push(options.redirectTo);
         router.push(options.redirectTo);
       } else {
         signIn();
