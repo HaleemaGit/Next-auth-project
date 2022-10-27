@@ -52,7 +52,7 @@ export async function getStaticProps({ params }) {
 // };
 
 function Post(props: any) {
-  let title = props.post.title;
+  let title = props.title;
   if (!props.published) {
     title = `${title} (Draft)`;
   }
@@ -60,12 +60,12 @@ function Post(props: any) {
   return (
     <Fragment>
       <Head>
-        <title>{props.post.title}</title>
-        <meta name="content" content={props.post.content} />
+        <title>{props.title}</title>
+        {/* <meta name="content" content={props.content} /> */}
       </Head>
       <p>By {props?.author?.name || "Unknown author"}</p>
-      <ReactMarkdown children={props.post.content} />
-      <PostContent post={props.post} />
+      <ReactMarkdown children={props.content} />
+      {/* <PostContent post={props.post} /> */}
 
        {/* <style jsx>{`
         .page {

@@ -42,7 +42,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
   return (
     <div>
-      <Link href={`/p/${post.id}`}>
+      <Link href={`/posts/${post.id}`}>
         <div>
           <h2>{post.author}</h2>
           <PostContent  post={post} />
