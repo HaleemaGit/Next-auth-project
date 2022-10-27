@@ -40,6 +40,18 @@ const AppLayout = (props) => {
       title: "Server Redirect",
       href: "/server-redirect",
     },
+    {
+      title: "Profile Page",
+      href: "/profile",
+    },
+    {
+      title: "Contact Page",
+      href: "/contact",
+    },
+    {
+      title: "My Blog",
+      href: "/my-blog",
+    },
   ];
 
   return (
