@@ -7,7 +7,7 @@ import {
   getProviders,
 } from "next-auth/react";
 import Head from "next/head";
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 const MINIMUM_ACTIVITY_TIMEOUT = 850;
@@ -17,11 +17,15 @@ type LoginFormValues = {
   password: string;
 };
 
+
+
 export default function Page({ csrfToken, providers }) {
   const [isSubmitting, setSubmitting] = React.useState(false);
-
   const { register, handleSubmit } = useForm();
 
+
+  const email = useRef();
+const password = useRef();
   const handleProviderSignIn = (provider) => {
     signIn(provider.id);
   };
@@ -91,8 +95,9 @@ export default function Page({ csrfToken, providers }) {
                     id="email"
                     name="email"
                     type="email"
-                    autoComplete="email"
+                    // autoComplete="email"
                     required
+                    ref={email}
                     {...register("email")}
                     className="appearance-none w-full font-medium py-3 border-b border-t-0 border-l-0 border-r-0 border-dashed outline-none text-xl text-center leading-6 bg-transparent placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 transition duration-150 ease-in-out"
                   />
@@ -116,6 +121,7 @@ export default function Page({ csrfToken, providers }) {
                     autoComplete="current-password"
                     minLength={12}
                     required
+                    ref={password}
                     {...register("password")}
                     className="appearance-none w-full font-medium py-3 border-b border-t-0 border-l-0 border-r-0 border-dashed outline-none text-xl text-center leading-6 bg-transparent placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 transition duration-150 ease-in-out"
                   />
@@ -163,6 +169,7 @@ export default function Page({ csrfToken, providers }) {
                 })}
               </div>
             </section>
+            
           </div>
         </div>
       </div>

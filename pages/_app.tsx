@@ -2,6 +2,7 @@ import React from "react";
 import type { ExtendedAppProps } from "@lib/types";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 
 import "@lib/styles/index.css";
 import WithAuth from "@lib/auth/WithAuth";
@@ -22,6 +23,7 @@ function MyApp({
         ) : (
           <Component {...pageProps} />
         )}
+        <Toaster />
       </QueryClientProvider>
     </SessionProvider>
   );
