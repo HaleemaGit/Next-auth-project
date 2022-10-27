@@ -4,15 +4,25 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import classes from "./blog-form.module.css";
+import PostProps from "../components/Post";
 
 type FormData = {
+  id: string;
   title: string;
+  author: {
+      name: string;
+      email: string;
+  } | null;
   content: string;
-  img: string;
-  file: any;
-  author: string;
+  published: boolean;
+  description: string;
+  image: string;
+  file: string;
 };
 
+// type Props = {
+//   FormData: PostProps[];
+// };
 export default function BlogForm() {
   const router = useRouter();
   const {
@@ -183,31 +193,6 @@ export default function BlogForm() {
         </div>
       </div>
     </div>
-
-    // <form onSubmit={handleSubmit(onSubmit)}>
-    //   <div>
-
-    //  <div className="row">
-    //    <label>Title</label>
-    //   </div>
-    //   <div className="row">
-    //   <input  {...register("title")} />
-    //   </div>
-
-    //   <div className="row">
-    //   <label>Content</label>
-    //   </div>
-    //   <div>
-    //   <input className={classes.header}{...register("content")} />
-    //   </div>
-    //   <div className="form-group">
-    //     <button type="submit" className="btn btn-primary mr-1">
-    //       Post
-    //     </button>
-
-    //   </div>
-    //   </div>
-    // </form>
   );
 }
 

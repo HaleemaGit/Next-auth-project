@@ -37,6 +37,7 @@ const Page = (props) => {
             </div>
           ))}</div>
       <FeaturedPosts posts={props.posts} />
+      <FeaturedPosts posts={props.data} />
     </Fragment>
       </AppLayout>
     </>

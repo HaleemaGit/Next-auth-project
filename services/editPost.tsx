@@ -6,10 +6,17 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type FormData = {
+  id: string;
   title: string;
+  author: {
+      name: string;
+      email: string;
+  } | null;
   content: string;
-  img: string;
-  file: any;
+  published: boolean;
+  description: string;
+  image: string;
+  file: string;
 };
 
 export default function Edit(props: any) {
@@ -175,30 +182,3 @@ export default function Edit(props: any) {
 }
 
 
-// <div className="flex items-center space-x-6">
-//             <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-//               <div className="space-y-1 text-center">
-//                 <label className="block text-sm font-medium text-gray-700">
-//                   Upload Something Worthwhile
-//                 </label>
-//                 <div className="shrink-0">
-//                   {/* <img className="h-16 w-16 object-cover rounded-full" src="https://unsplash.com/photos/cYpqYxGeqts" /> */}
-//                 </div>
-//                 <label className="block">
-//                   <span className="sr-only">Choose profile photo</span>
-//                   <input
-//                     {...register("file")}
-//                     name="file"
-//                     type="file"
-//                     className="block w-full text-sm text-slate-500
-//            file:mr-4 file:py-2 file:px-4
-//            file:rounded-full file:border-0
-//            file:text-sm file:font-semibold
-//             file:bg-violet-50 file:text-violet-700
-//            hover:file:bg-violet-100
-//            "
-//                   />
-//                 </label>
-//               </div>
-//             </div>
-//           </div>
