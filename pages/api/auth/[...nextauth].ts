@@ -6,6 +6,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { verifyPassword, hashPassword } from "@lib/auth/passwords";
 import { Session } from "@lib/auth/session";
 import prisma from "@db/index";
+import GoogleProvider from "next-auth/providers/google";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -19,6 +20,10 @@ export default NextAuth({
     // error: "/auth/error", // Error code passed in query string as ?error=
   },
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET as string,
+    }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,

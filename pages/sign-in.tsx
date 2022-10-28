@@ -1,5 +1,6 @@
 import { filter } from "lodash";
 import { GetServerSidePropsContext } from "next";
+import google from "next-auth/providers/google";
 import {
   getSession,
   getCsrfToken,
@@ -7,8 +8,9 @@ import {
   getProviders,
 } from "next-auth/react";
 import Head from "next/head";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const MINIMUM_ACTIVITY_TIMEOUT = 850;
 type LoginFormValues = {
@@ -22,13 +24,20 @@ type LoginFormValues = {
 export default function Page({ csrfToken, providers }) {
   const [isSubmitting, setSubmitting] = React.useState(false);
   const { register, handleSubmit } = useForm();
-
+  const [disabled, setDisabled] = useState(false);
 
   const email = useRef();
 const password = useRef();
-  const handleProviderSignIn = (provider) => {
-    signIn(provider.id);
-  };
+  // const handleProviderSignIn = (provider) => {
+  //   signIn(provider.id);
+  //       // TODO: Perform Google auth
+  //       toast.loading("Redirecting...");
+  //       setDisabled(true);
+  //       // Perform sign in
+  //       signIn("google", {
+  //         callbackUrl: window.location.href,
+  //       });
+  // };
   const onSubmit = async (data: LoginFormValues) => {
     setSubmitting(true);
     try {
@@ -40,12 +49,25 @@ const password = useRef();
 
       setTimeout(() => {
         setSubmitting(false);
-      }, MINIMUM_ACTIVITY_TIMEOUT);
+      },
+      
+      // MINIMUM_ACTIVITY_TIMEOUT
+      );
     } catch (error) {
       console.error(error);
       //   setError(error)
       setSubmitting(false);
     }
+  };
+
+  const handleProviderSignIn = () => {
+    // TODO: Perform Google auth
+    toast.loading("Redirecting...");
+    setDisabled(true);
+    // Perform sign in
+    signIn("google", {
+      callbackUrl: window.location.href,
+    });
   };
 
   return (
@@ -58,8 +80,8 @@ const password = useRef();
         <a href="/">
           <img
             className="h-16 mx-auto"
-            src="/assets/planet-scale.svg"
-            alt="PlanetScale Logo"
+            src="/images/site/3d.jpg"
+            alt="Amazing User"
           />
         </a>
       </div>
@@ -135,7 +157,8 @@ const password = useRef();
                   className="button button__md button__primary w-full"
                 >
                   {isSubmitting ? (
-                    <img src="/assets/loading.svg" />
+                    toast.loading("Redirecting...")
+                    // <img src="/assets/loading.svg" />
                   ) : (
                     <p>Sign in</p>
                   )}
@@ -150,23 +173,22 @@ const password = useRef();
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
-                {providers.map((provider) => {
-                  return (
+              <div className="grid grid-cols-1 gap-6">
+                {/* {providers.map((provider) => {
+                  return ( */}
                     <button
-                      key={provider}
+                      key=""
                       type="button"
-                      onClick={() => handleProviderSignIn(provider)}
+                      onClick={handleProviderSignIn}
                       className="button button__secondary inline-flex space-x-2"
                     >
                       <img
                         className="w-6 h-6"
-                        src={`/assets/${provider.id}.svg`}
+                        src={`/assets/google.png`}
                       />
-                      <p>{provider.name}</p>
+                      <p>Google</p>
                     </button>
-                  );
-                })}
+
               </div>
             </section>
             

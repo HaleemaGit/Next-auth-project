@@ -62,13 +62,13 @@ export default function Page({ csrfToken }) {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center py-12">
         <img
           className="h-16 mx-auto"
-          src="/assets/planet-scale.svg"
-          alt="PlanetScale Logo"
+          src="/images/site/3d.jpg"
+          alt="Logo"
         />
       </div>
       <div className=" flex flex-col justify-center py-12 sm:px-6 lg:px-8 mt-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md text-center ">
-          <p>Welcome to the PlanetScale Next.js Starter App</p>
+          <p>Welcome to Scale App</p>
           <p>Get started by creating an administrative account to setup.</p>
         </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

@@ -26,8 +26,8 @@ const AdminLayout = (props) => {
                 >
                   <img
                     className="h-8 w-8 mx-auto"
-                    src="/assets/planet-scale.svg"
-                    alt="PlanetScale Logo"
+                    src="/images/site/3d.jpg"
+                    alt="Logo"
                   />
                 </button>
                 <div className="flex-1 flex"></div>

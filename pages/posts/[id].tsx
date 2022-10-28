@@ -31,6 +31,8 @@ export function getStaticPaths({ params }) {
   };
 }
 
+
+
 function Post(props: any) {
   let title = props.title;
   if (!props.published) {

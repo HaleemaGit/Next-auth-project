@@ -8,7 +8,7 @@ function Hero() {
       <div className={classes.image}>
         <Image
           src='https://pixabay.com/photos/road-forest-fall-path-trail-trees-1072821/'
-          alt='An image showing Max'
+          alt='An image showing ...'
           width={300}
           height={300}
         />
