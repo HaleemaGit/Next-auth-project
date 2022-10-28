@@ -36,7 +36,7 @@ const Page = (props) => {
               <Post post={post} />
             </div>
           ))}</div>
-      <FeaturedPosts posts={props.posts} />
+      {/* <FeaturedPosts posts={props.posts} /> */}
       <FeaturedPosts posts={props.data} />
     </Fragment>
       </AppLayout>

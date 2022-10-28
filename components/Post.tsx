@@ -21,7 +21,11 @@ export type PostProps = {
   image:string;
 };
 
+
+
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+  // const description = ({post})=>(post.content.slice(7, 300));
+
   const [editing, setEditing] = useState(false);
 
   const router = useRouter();
@@ -45,7 +49,7 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
       <Link href={`/posts/${post.id}`}>
         <div>
           <h2>{post.author}</h2>
-          <PostContent  post={post} />
+          <PostContent post={post} />
           {/* <ReactMarkdown children={post.author} /> */}
         </div>
       </Link>

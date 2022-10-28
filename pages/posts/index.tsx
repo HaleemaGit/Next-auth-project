@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import { PrismaClient } from "@prisma/client";
 import AllPosts from '../../components/posts/all-posts';
 import { getAllPosts } from '../../lib/posts-util';
-import Post from './[id]';
+// import Post from './[id]';
 
 const prisma = new PrismaClient();
 
