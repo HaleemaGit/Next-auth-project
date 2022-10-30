@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Edit from "../services/editPost";
 import PostContent from "./posts/post-detail/post-content";
+import { useSession, signIn } from "next-auth/react";
 
 export type PostProps = {
   id: string;
@@ -26,6 +27,9 @@ export type PostProps = {
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   // const description = ({post})=>(post.content.slice(7, 300));
 
+  const { status, data: session } = useSession({
+    required: false,
+  });
   const [editing, setEditing] = useState(false);
 
   const router = useRouter();
@@ -56,7 +60,9 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
       {editing && <Edit post={post} setEditing={setEditing} />}
 
 
-      <div className="h-56 grid grid-cols-2 gap-4 content-around">
+      
+      {session && (
+         <div className="h-56 grid grid-cols-2 gap-4 content-around">
       {!editing && (
   <button type="button"
           onClick={() => {
@@ -70,13 +76,8 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
         }} className=" relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold ml-4 py-3 px-4 rounded shadow">
    Delete
   </button>
-</div>
-      {/* <style jsx>{`
-        div {
-          color: inherit;
-          padding: 2rem;
-        }
-      `}</style> */}
+  </div>)}
+
     </div>
   );
 };
