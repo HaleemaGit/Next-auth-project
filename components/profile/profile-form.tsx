@@ -5,14 +5,14 @@ import classes from './profile-form.module.css';
 
 
 function ProfileForm(props: any) {
-  const oldPasswordRef = useRef(null);
-  const newPasswordRef = useRef(null);
+  const oldPasswordRef = useRef();
+  const newPasswordRef = useRef();
 
   function submitHandler(event) {
     event.preventDefault();
 
-    const enteredOldPassword = oldPasswordRef.current.value;
-    const enteredNewPassword = newPasswordRef.current.value;
+    const enteredOldPassword = oldPasswordRef.current;
+    const enteredNewPassword = newPasswordRef.current;
 
     // optional: Add validation
 

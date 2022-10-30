@@ -5,14 +5,16 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import classes from "./blog-form.module.css";
 import PostProps from "../components/Post";
+import { useSession, signIn } from "next-auth/react";
 
 type FormData = {
   id: string;
   title: string;
   author: {
-      name: string;
-      email: string;
+    name: string;
+    email: string;
   } | null;
+  authorId: string;
   content: string;
   published: boolean;
   description: string;
@@ -24,6 +26,10 @@ type FormData = {
 //   FormData: PostProps[];
 // };
 export default function BlogForm() {
+  const { status, data: session } = useSession({
+    required: false,
+  });
+
   const router = useRouter();
   const {
     register,
@@ -36,7 +42,7 @@ export default function BlogForm() {
     let toastId;
     toastId = toast.loading("Submitting post....");
     try {
-      await axios.post("/api/post", data);
+      await axios.post("/api/post", { ...data, authorId: session.user.id });
       toast.success("Successfully posted", { id: toastId });
       reset();
     } catch (error) {
@@ -62,25 +68,25 @@ export default function BlogForm() {
               <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
                   <div className="col-span-3 sm:col-span-2">
-                  <div className="col-span-3 sm:col-span-2">
-                    <label
-                      htmlFor="author"
-                      className=" pt-6 block text-sm font-medium text-gray-700"
-                    >
-                     Author
-                    </label>
-                    <div className="mt-1 flex rounded-md shadow-sm">
-                      {/* <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">http://</span> */}
-                      <input
-                        {...register("author")}
-                        type="text"
-                        name="author"
-                        id="author"
-                        className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Your name"
-                      />
+                    <div className="col-span-3 sm:col-span-2">
+                      <label
+                        htmlFor="author"
+                        className=" pt-6 block text-sm font-medium text-gray-700"
+                      >
+                        Author
+                      </label>
+                      <div className="mt-1 flex rounded-md shadow-sm">
+                        {/* <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">http://</span> */}
+                        <input
+                          {...register("author")}
+                          type="text"
+                          name="author"
+                          id="author"
+                          className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          placeholder="Your name"
+                        />
+                      </div>
                     </div>
-                  </div>
                     <label
                       htmlFor="title"
                       className=" pt-6 block text-sm font-medium text-gray-700"

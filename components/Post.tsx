@@ -16,20 +16,19 @@ export type PostProps = {
     name: string;
     email: string;
   } | null;
+  authorId: string;
   content: string;
   published: boolean;
   description: string;
-  image:string;
+  image: string;
 };
-
-
 
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   // const description = ({post})=>(post.content.slice(7, 300));
-
   const { status, data: session } = useSession({
     required: false,
   });
+
   const [editing, setEditing] = useState(false);
 
   const router = useRouter();
@@ -47,37 +46,50 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   };
 
   console.log(post);
-  const authorName = post.author ? post.author.name : "Unknown author";
+  const authorName = post.authorId ? post.author : "Unknown author";
   return (
     <div>
       <Link href={`/posts/${post.id}`}>
         <div>
-          <h2>{post.author}</h2>
+          <h2>{authorName}</h2>
           <PostContent post={post} />
           {/* <ReactMarkdown children={post.author} /> */}
         </div>
       </Link>
-      {editing && <Edit post={post} setEditing={setEditing} />}
+      {session && session.user.id == post.authorId && (
+        <>
+          {editing && <Edit post={post} setEditing={setEditing} />}
 
+          <div className="h-56 grid grid-cols-2 gap-4 content-around">
+            {!editing && (
+              <button
+                type="button"
+                onClick={() => {
+                  setEditing(true);
+                }}
+                className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 outline outline-offset-2 outline-2 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold mr-4 py-3 px-4 rounded shadow"
+              >
+                Edit
+              </button>
+            )}
+            <button
+              onClick={() => {
+                onDelete(post);
+              }}
+              className=" relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold ml-4 py-3 px-4 rounded shadow"
+            >
+              Delete
+            </button>
+          </div>
+        </>
+      )}
 
-      
-      {session && (
-         <div className="h-56 grid grid-cols-2 gap-4 content-around">
-      {!editing && (
-  <button type="button"
-          onClick={() => {
-            setEditing(true);
-          }} className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 outline outline-offset-2 outline-2 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold mr-4 py-3 px-4 rounded shadow">
-    Edit
-  </button>)}
-  <button 
-        onClick={() => {
-          onDelete(post);
-        }} className=" relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold ml-4 py-3 px-4 rounded shadow">
-   Delete
-  </button>
-  </div>)}
-
+      {/* <style jsx>{`
+        div {
+          color: inherit;
+          padding: 2rem;
+        }
+      `}</style> */}
     </div>
   );
 };

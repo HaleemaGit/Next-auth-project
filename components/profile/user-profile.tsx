@@ -1,5 +1,6 @@
 import ProfileForm from './profile-form';
 import classes from './user-profile.module.css';
+// import {parse, stringify, toJSON, fromJSON} from 'flatted';
 
 function UserProfile() {
   // const [isLoading, setIsLoading] = useState(true);
@@ -21,9 +22,11 @@ function UserProfile() {
 
   
   async function changePasswordHandler(passwordData) {
+    const {parse, stringify, toJSON, fromJSON} = require('flatted');
+
     const response = await fetch('/api/user/change-password', {
       method: 'PATCH',
-      body: JSON.stringify(passwordData),
+      body: stringify(passwordData),
       headers: {
         'Content-Type': 'application/json'
       }
