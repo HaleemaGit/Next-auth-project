@@ -20,26 +20,26 @@ const AppLayout = (props) => {
       title: "Home",
       href: "/",
     },
-    {
-      title: "Client",
-      href: "/client",
-    },
-    {
-      title: "Server",
-      href: "/server",
-    },
-    {
-      title: "With Session",
-      href: "/with-session",
-    },
-    {
-      title: "Client Redirect",
-      href: "/client-redirect",
-    },
-    {
-      title: "Server Redirect",
-      href: "/server-redirect",
-    },
+    // {
+    //   title: "Client",
+    //   href: "/client",
+    // },
+    // {
+    //   title: "Server",
+    //   href: "/server",
+    // },
+    // {
+    //   title: "With Session",
+    //   href: "/with-session",
+    // },
+    // {
+    //   title: "Client Redirect",
+    //   href: "/client-redirect",
+    // },
+    // {
+    //   title: "Server Redirect",
+    //   href: "/server-redirect",
+    // },
     {
       title: "Profile Page",
       href: "/profile",

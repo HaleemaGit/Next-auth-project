@@ -60,14 +60,14 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
         <>
           {editing && <Edit post={post} setEditing={setEditing} />}
 
-          <div className="h-56 grid grid-cols-2 gap-4 content-around">
+          <div className="flex items-center justify-center h-screen">
             {!editing && (
               <button
                 type="button"
                 onClick={() => {
                   setEditing(true);
                 }}
-                className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 outline outline-offset-2 outline-2 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold mr-4 py-3 px-4 rounded shadow"
+                className="w-full h-12 px-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800 relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 outline outline-offset-2 outline-2 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold mr-4 py-3 px-4 rounded shadow"
               >
                 Edit
               </button>
@@ -76,13 +76,13 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
               onClick={() => {
                 onDelete(post);
               }}
-              className=" relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold ml-4 py-3 px-4 rounded shadow"
+              className=" w-full h-12 px-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800 relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 bg-gray-300 focus:shadow-outline hover:bg-gray-400 text-gray-800 font-bold ml-4 py-3 px-4 rounded shadow"
             >
               Delete
             </button>
           </div>
         </>
-      )}
+       )} 
 
       {/* <style jsx>{`
         div {
